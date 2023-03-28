@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Document</title>
+</head>
+<body>
+
+	<h2>Welcome Home</h2>
+
+	<!-- <a href="/logout">Log out?</a> -->
+
+	<div id="container">
+      
+      
+      <button id="button" onclick="get_Image_of_the_Day()"> Get Image of the day </button>
+      <br>
+      <br>
+      <img id="image" width="500" height="600" />
+      
+
+  	</div>
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+function get_Image_of_the_Day(){
+
+  key = "HQ05tVxEHrhKLypKK60XvcoXGJGKOcWN41lWVHLt"
+  base_url = "https://api.nasa.gov/planetary/apod?api_key="
+
+  url = base_url + key 
+
+
+  fetch(url)
+
+  .then(function(response){
+  	console.log(response)
+    return response.json();
+  })
+
+  .then(function(data){
+  	console.log("hdurl: ", data['hdurl'])
+    display_image(data['hdurl']);
+  })
+
+  .catch(function(error){
+    console.log("Error: " + error);
+  });
+
+
+}
+
+function display_image(image_url){
+  document.getElementById("image").src = image_url;
+}
+
+</script>
